@@ -1,0 +1,33 @@
+﻿@using DamirMasic.ViewModels
+@model LoginVM
+@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+
+@{
+    ViewBag.Title = "Login";
+}
+
+<div id="container">
+    <form asp-controller="Home" asp-action="Login">
+        <br />
+
+        @*<label asp-for="UserName"></label>*@
+        <div class="input-group margin-bottom-sm">
+            <span class="input-group-addon"><i class="fa fa-user fa-fw"></i></span>
+            <input asp-for="UserName" class="form-control custom loginForm" placeholder="UserName" />
+            <span asp-validation-for="UserName"></span>
+        </div>
+
+        <br /><br /><br /><br />
+        <div class="input-group">
+            @*<label asp-for="Password"></label>*@
+            <br />
+            <span class="input-group-addon"><i class="fa fa-key fa-fw"></i></span>
+            <input asp-for="Password" class="form-control custom loginForm" placeholder="Password" />
+            <span asp-validation-for="Password"></span>
+        </div>
+        <br />
+        <br />
+        <input type="submit" value="Login" class="btn btn-success" data-dismiss="modal" />
+
+    </form>
+</div>
