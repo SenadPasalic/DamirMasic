@@ -63,5 +63,11 @@ namespace MVCempty.Controllers
 
 
         }
+
+        //Gallery
+        public IActionResult Gallery()
+        {
+            return View();
+        }
     }
 }
