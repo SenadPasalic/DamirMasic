@@ -38,34 +38,24 @@ namespace DamirMasic.Controllers
 
         // GET: /<controller>/
         //Admin/AddPost
-        //[Authorize]
+        [Authorize]
+        public IActionResult AddPost()
+        {
+            var model = new AddPostVM();
 
-        //public IActionResult AddPost()
-        //{
-        //    var model = new AddPostVM();
-        //    model.Categories = _postsRepository.GetAllCategories();
-        //    //var model = _postsRepository.GetAllPosts();
-        //    return View(model);
-        //}
-        //[Authorize]
-        //[HttpPost]
-        //public IActionResult AddPost(AddPostVM viewModel, string command)
-        //{
-        //    if (command.Equals("submit2"))
-        //    {
-        //        _postsRepository.AddNewCategory(viewModel);
-        //        return RedirectToAction("addpost", "admin");
-        //    }
-        //    else
-        //    {
-        //        if (!ModelState.IsValid)
-        //        {
-        //            return View(viewModel);
-        //        }
-        //        _postsRepository.AddPost(viewModel, "Administrator");
-        //        return RedirectToAction("index", "home");
-        //    }
-        //}
+            return View(model);
+        }
+        [Authorize]
+        [HttpPost]
+        public IActionResult AddPost(AddPostVM viewModel, string command)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(viewModel);
+            }
+            _postsRepository.AddPost(viewModel, "Administrator");
+            return RedirectToAction("index", "home");
+        }
 
         //Register
         public IActionResult Register()

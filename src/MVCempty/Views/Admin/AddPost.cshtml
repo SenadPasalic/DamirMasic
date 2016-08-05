@@ -1,0 +1,23 @@
+﻿@using DamirMasic.ViewModels
+@model AddPostVM
+@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+
+@{
+    ViewBag.Title = "New post";
+}
+
+
+<div id="container">
+    <form asp-controller="Admin" asp-action="AddPost" method="post">        
+        <br />
+        <label asp-for="Image"></label>
+        <br />
+        <input asp-for="Image" placeholder="Picture link" style="width:70%;" />
+        <span asp-validation-for="Image"></span>
+        <br />       
+        <br />
+        <div id="button-panel">
+            <button type="submit" name="command" value="submit1" class="btn btn-success" data-dismiss="modal"><span class="fa fa-upload" aria-hidden="true"></span> Publish</button>
+        </div>
+    </form>
+</div>
