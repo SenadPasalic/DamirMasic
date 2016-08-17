@@ -21,8 +21,9 @@ namespace DamirMasic
             services.AddMvc();
 
             //Connection strings            
-            //Azure geekin           
-            var connString = @"Server = tcp:geekin.database.windows.net,1433; Data Source = geekin.database.windows.net; Initial Catalog = Geekin; Persist Security Info = False; User ID =Senad; Password =Azure89!; Pooling = False; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30; Trusted_Connection = False; Encrypt = True;";
+            //Azure damirmasic           
+            //var connString = @"Server = tcp:geekin.database.windows.net,1433; Data Source = geekin.database.windows.net; Initial Catalog = Geekin; Persist Security Info = False; User ID =Senad; Password =Azure89!; Pooling = False; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30; Trusted_Connection = False; Encrypt = True;";
+            var connString = @"Server = tcp:damirmasic.database.windows.net,1433; Data Source = damirmasic.database.windows.net; Initial Catalog = damirmasic; Persist Security Info = False; User ID =damirmasic; Password =damir123!; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30; Trusted_Connection = False; Encrypt = True;";
             //Azure User
             var identityConnString = @"Server = tcp:geekinuser.database.windows.net,1433; Data Source = geekinuser.database.windows.net; Initial Catalog = User; Persist Security Info = False; User ID = Senad; Password =Azure89!; Pooling = False; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;";            
 

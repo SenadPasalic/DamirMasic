@@ -1,6 +1,35 @@
-﻿
+﻿@using DamirMasic.ViewModels
+@model MasterOneVM
+@addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
+
+@{
+    ViewBag.Title = "Damir Masic Galerija";
+}
+
+<title>Damir Masic - Galerija</title>
+
+<div id="fb-root"></div>
+@* Facebook comments *@
+<script>
+    (function (d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
 <link href="~/styles/main.css" rel="stylesheet" />
 
+
+<a style="position:fixed; top:14%;" class="navbar-brand page-scroll galleryBird" href="/home/index" title="Početna">
+    <img src="~/Img/Logo2.png" />
+</a>
+
+
+<hr />
 <div id="wrapper">
 
     <!-- Header -->
@@ -8,14 +37,14 @@
         <div class="inner">
 
             <!-- Logo -->
-            <a href="index.html" class="logo">
-                <span class="symbol"><img src="images/logo.svg" alt="" /></span><span class="title">Phantom</span>
-            </a>
+            <span href="/home/index/" class="logo">
+                <span class="symbol"><img title="Grad Ostrožac" src="~/Img/Coin3.png" alt="" /></span><span class="title">Galerija</span>
+            </span>
 
             <!-- Nav -->
             <nav>
                 <ul>
-                    <li><a href="#menu">Menu</a></li>
+                    <li><a href="#menu" title="menu">Menu</a></li>
                 </ul>
             </nav>
 
@@ -26,25 +55,124 @@
     <nav id="menu">
         <h2>Menu</h2>
         <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="generic.html">Ipsum veroeros</a></li>
-            <li><a href="generic.html">Tempus etiam</a></li>
-            <li><a href="generic.html">Consequat dolor</a></li>
-            <li><a href="elements.html">Elements</a></li>
+            <li><a href="/home/index/"><b>Početna</b></a></li>
+            @foreach (var item in Model.BlogPosts)
+            {
+                <li><a href="/home/onepost?myTitle=@item.Id">@item.Title</a></li>
+            }
         </ul>
     </nav>
 
     <!-- Main -->
     <div id="main">
         <div class="inner">
-            <header>
-                <h1>
-                    This is Phantom, a free, fully responsive site<br />
-                    template designed by <a href="http://html5up.net">HTML5 UP</a>.
+            <header>                
+                <h1 style="letter-spacing: 15px">
+                    @*This is Phantom, a free, fully responsive site<br />
+                    template designed by <a href="http://html5up.net">HTML5 UP</a>.*@
+                    Svježi trenutci inspiracije
                 </h1>
-                <p>Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit amet nisi euismod sed cursus arcu elementum ipsum arcu vivamus quis venenatis orci lorem ipsum et magna feugiat veroeros aliquam. Lorem ipsum dolor sit amet nullam dolore.</p>
+                @*<p>Etiam quis viverra lorem, in semper lorem. Sed nisl arcu euismod sit amet nisi euismod sed cursus arcu elementum ipsum arcu vivamus quis venenatis orci lorem ipsum et magna feugiat veroeros aliquam. Lorem ipsum dolor sit amet nullam dolore.</p>*@
             </header>
             <section class="tiles">
+                @* Skriver ut alla posts *@
+                @foreach (var item in Model.BlogPosts)
+                {                    
+                    //Post
+                    @*<article class="style1">*@
+                    <article class="style1" style="background-color:#@item.Color; margin-bottom:2.5em;">
+                        <span class="image" style="background-color:#@item.Color;">
+                            @*Image*@
+                            @if (@item.Image != null)
+                            {
+                                <img src="@item.Image" alt="Image" style="width:100%; height:100%; position:relative;">
+                            }
+                            @*Text*@
+                            @if (@item.Text != null)
+                            {
+                                @if (@item.Text.Length > 380)
+                                {
+                                    <span style="position: absolute; top:20px; left:10px">
+                                        @Html.Raw(item.Text.Substring(0, 380))
+                                        @*<b>@Html.ActionLink("... Čitaj Dalje", "OnePost", "Home", new { myTitle = @item.Id }, null)</b>*@
+                                        <b>@Html.ActionLink("...", "OnePost", "Home", new { myTitle = @item.Id }, null)</b>
+                                    </span>
+
+                                }
+                                else
+                                {
+                                    <span style="position: absolute; top:20px; left:10px">
+                                        @Html.Raw(item.Text)
+                                    </span>
+                                }
+                            }
+                        </span>
+                        @*Title*@
+                        <a class="galleryTitle" href="/home/onepost?myTitle=@item.Id">
+                            <div class="content">
+                                @if (@item.Text != null)
+                                {
+                                    @if (@item.Text.Length > 380)
+                                    {
+                                        <h5> Čitaj Dalje</h5>
+                                    }
+                                }
+                            </div>
+                            @if (@item.Title != null)
+                            {
+                                //<h2>@Html.ActionLink(@item.Title, "OnePost", "Home", new { myTitle = @item.Id }, null)</h2>
+                                <h2>@item.Title</h2>
+                            }
+                            <div class="content">
+                                @*<p>@item.TimePosted</p>*@
+                                @*Comments*@
+                                <div class="myComments">
+                                    <span class="fb-comments-count" data-href="http://damirmasic.azurewebsites.net/Home/OnePost?myTitle=@item.Title">0</span> komentara
+                                </div>
+                            </div>
+                        </a>
+                    </article>
+
+                    <!--Edit/Delete for ADMIN-->
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <div style="margin-right:5px;">
+                            <form asp-controller="Admin" asp-action="EditBlogPost" title="Edit">
+                                <input type="hidden" name="postId" value="@item.Id" />
+                                <button type="submit" class="btn btn-warning" style="display: inline;"><span class="fa fa-pencil"></span></button>
+                            </form>
+                        </div>
+                        <div>
+                            <form asp-controller="Admin" asp-action="DeleteBlogPost" title="Delete">
+                                <input type="hidden" name="postId" value="@item.Id" />
+                                <button type="submit" class="btn btn-danger" style="display: inline;"><span class="fa fa-trash"></span></button>
+                            </form>
+                        </div>
+                    }
+                    <br />
+                    <br />
+                }
+
+                @*<article class="style1">
+                    <span class="image">
+                        Kaže Allah dž.š.:
+
+                        – Zar ne vidiš Kako Allah navodi primjer – lijepa Rijec kao lijepo drvo: korijen mu je cvrsto u Zemlji, a grane prema nebu;
+
+                        -ono plod svoj daje u svako doba koje Gospodar njegov odredi -, a Allah ljudima navodi primjere da bi pouku primili.
+
+                        – a ružna Rijec je kao ružno drvo: išcupanom drvetu s površine Zemlje nema opstanka.
+                    </span>
+                    <a href="generic.html">
+                        <h2>Magna</h2>
+                        <div class="content">
+                            <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
+                        </div>
+                    </a>
+                </article>
+
+
+                
                 <article class="style1">
                     <span class="image">
                         <img src="images/pic01.jpg" alt="" />
@@ -56,6 +184,8 @@
                         </div>
                     </a>
                 </article>
+                
+
                 <article class="style2">
                     <span class="image">
                         <img src="images/pic02.jpg" alt="" />
@@ -176,19 +306,26 @@
                             <p>Sed nisl arcu euismod sit amet nisi lorem etiam dolor veroeros et feugiat.</p>
                         </div>
                     </a>
-                </article>
+                </article>*@
             </section>
         </div>
     </div>
 </div>
 
 
+<!-- Scripts -->
+<script src="~/Scripts/jquery.min.js"></script>
+<script src="~/Scripts/skel.min.js"></script>
+<script src="~/Scripts/util.js"></script>
+<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+<script src="~/Scripts/main.js"></script>
 
 
 
-
-
-<div class="bs-example">
-    <h2>Type your favorite car name</h2>
-    <input type="text" class="typeahead tt-query" autocomplete="off" spellcheck="false">
-</div>
+@* Typeahead testing *@
+@*
+    <div class="bs-example">
+        <h2>Type your favorite car name</h2>
+        <input type="text" class="typeahead tt-query" autocomplete="off" spellcheck="false">
+    </div>
+*@

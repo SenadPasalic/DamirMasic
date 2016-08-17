@@ -39,7 +39,8 @@ p {
   }
 }
 a {
-  color: #42DCA3;
+  /*color: #42DCA3;*/
+  color:green;
   -webkit-transition: all 0.2s ease-in-out;
   -moz-transition: all 0.2s ease-in-out;
   transition: all 0.2s ease-in-out;
@@ -224,16 +225,16 @@ a:focus {
   padding-top: 100px;
 }
 .download-section {
-  width: 100%;
-  padding: 50px 0;
-  color: white;
-  /*background: url(../img/downloads-bg.jpg) no-repeat center center scroll;*/
-  background: url(../img/13695828_10154320841375902_1909514073_n.jpg) no-repeat center center scroll;  
-  background-color: black;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  background-size: cover;
-  -o-background-size: cover;
+    width: 100%;
+    padding: 50px 0;
+    color: white;
+    /*background: url(../img/downloads-bg.jpg) no-repeat center center scroll;*/
+    background: url(../img/bihac3.jpg) no-repeat center center scroll;
+    background-color: black;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    background-size: cover;
+    -o-background-size: cover;
 }
 #map {
   width: 100%;
@@ -262,16 +263,16 @@ a:focus {
   border-radius: 0;
 }
 .btn-default {
-  border: 1px solid #42DCA3;
-  color: #42DCA3;
+  border: 1px solid green;
+  color: green;
   background-color: transparent;
 }
 .btn-default:hover,
 .btn-default:focus {
-  border: 1px solid #42DCA3;
+  border: 1px solid green;
   outline: none;
   color: black;
-  background-color: #42DCA3;
+  background-color: green;
 }
 ul.banner-social-buttons {
   margin-top: 0;

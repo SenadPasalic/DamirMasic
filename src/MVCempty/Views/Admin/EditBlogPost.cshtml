@@ -3,13 +3,13 @@
 @addTagHelper "*, Microsoft.AspNet.Mvc.TagHelpers"
 
 @{
-    ViewBag.Title = "New post";
+    ViewBag.Title = "Edit post";
 }
 
 
 <div id="container">
     <div class="myContent mobileContent3">
-        <form asp-controller="Admin" asp-action="AddPost" method="post">
+        <form asp-controller="Admin" asp-action="UpdateBlogPost" method="post">
             <br />
             <label asp-for="Title"></label>
             <br />
@@ -26,11 +26,12 @@
             <span asp-validation-for="Image"></span>
             <br />
             <br />
-            <p id="rect" style="border:1px solid gray; width:174px; height:100px; margin-left:10%"></p>            
+            <p id="rect" style="border:1px solid gray; width:174px; height:100px; margin-left:10%"></p>
                 <label asp-for="Color"></label>
-                <input asp-for="Color" class="jscolor {onFineChange:'update(this)'}" value="000000">
+                <input asp-for="Color" class="jscolor {onFineChange:'update(this)'}" value="cc66ff">
                 <br />
                 <br />
+            <input asp-for="Id" type="hidden" value="@Model.Id" />
                 <div id="button-panel">
                     <button style="float:right;margin-left:5px;" type="submit" name="command" value="submit1" class="btn btn-success"><span class="fa fa-upload" aria-hidden="true"></span> Publish</button>
                     <a href="/home/gallery/" style="float:right" class="btn btn-danger"><span class="fa fa-arrow-left" aria-hidden="true"></span> Nazad</a>
@@ -38,11 +39,3 @@
         </form>
     </div>
 </div>
-
-@* jsColor Picker *@
-<script>
-        function update(jscolor) {
-            // 'jscolor' instance can be used as a string
-            document.getElementById('rect').style.backgroundColor = '#' + jscolor
-        }
-</script>

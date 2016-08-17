@@ -54,7 +54,7 @@ namespace DamirMasic.Controllers
                 return View(viewModel);
             }
             _postsRepository.AddPost(viewModel, "Administrator");
-            return RedirectToAction("index", "home");
+            return RedirectToAction("gallery", "home");
         }
 
         //Register
@@ -80,7 +80,7 @@ namespace DamirMasic.Controllers
             if (!result.Succeeded)
             {
                 ModelState.AddModelError(nameof(LoginVM.UserName),
-                    result.Errors.First().Description);
+                    result.Errors.FirstOrDefault().Description);
 
                 return View(viewModel);
             }
@@ -104,6 +104,41 @@ namespace DamirMasic.Controllers
 
             return RedirectToAction(nameof(HomeController.Index), "home"); //då du blivit inloggad, hoppa till Home/Index
         }
+
+        //Delete BlogPost
+        [HttpPost]
+        public IActionResult DeleteBlogPost(int postId)
+        {
+            _postsRepository.DeleteBlogPost(postId);
+            return RedirectToAction(nameof(HomeController.Gallery), "home");
+        }
+
+        //Edit BlogPost
+        [HttpPost]
+        public IActionResult EditBlogPost(int postId)
+        {
+            var model = _postsRepository.GetAllPosts().Where(o => o.Id == postId)
+                .Select(o => new AddPostVM
+                {
+                    Id = postId,
+                    Title = o.Title,
+                    Text = o.Text,
+                    Image = o.Image,
+                    Color = o.Color
+                })
+                .Single();
+
+            return View(model);
+        }
+
+        //Update BlogPost
+        [HttpPost]
+        public IActionResult UpdateBlogPost(GetPostVM model)
+        {
+            _postsRepository.UpdateBlogPost(model);            
+            return RedirectToAction(nameof(HomeController.Gallery), "home");
+        }
+
         //Logout
         public async Task<IActionResult> LogOut()
         {
