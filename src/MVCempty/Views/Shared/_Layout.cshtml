@@ -3,7 +3,7 @@
       xmlns:og="http://ogp.me/ns#"
       xmlns:fb="https://www.facebook.com/2008/fbml">
 
-<head>    
+<head>
     @* Viewport *@
     <meta name=viewport content="width=device-width, initial-scale=1">
     @* CSS *@
@@ -66,73 +66,73 @@
     @* Typeahead Twitter *@
     @*<script async src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>*@
     @*<script type="text/javascript" src="~/Scripts/typeahead.js"></script>
-    <script type="text/javascript">
-        $(document).ready(function () {
-            $('input.typeahead').typeahead({
-                name: 'accounts',
-                local: ['Audi', 'BMW', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Volkswagen']
+        <script type="text/javascript">
+            $(document).ready(function () {
+                $('input.typeahead').typeahead({
+                    name: 'accounts',
+                    local: ['Audi', 'BMW', 'Bugatti', 'Ferrari', 'Ford', 'Lamborghini', 'Mercedes Benz', 'Porsche', 'Rolls-Royce', 'Volkswagen']
+                });
             });
-        });
-    </script>
-    <style type="text/css">
-        .bs-example {
-            font-family: sans-serif;
-            position: relative;
-            margin: 100px;
-        }
-
-        .typeahead, .tt-query, .tt-hint {
-            border: 2px solid #CCCCCC;
-            border-radius: 8px;
-            font-size: 24px;
-            height: 30px;
-            line-height: 30px;
-            outline: medium none;
-            padding: 8px 12px;
-            width: 396px;
-        }
-
-        .typeahead {
-            background-color: #FFFFFF;
-        }
-
-            .typeahead:focus {
-                border: 2px solid #0097CF;
+        </script>
+        <style type="text/css">
+            .bs-example {
+                font-family: sans-serif;
+                position: relative;
+                margin: 100px;
             }
 
-        .tt-query {
-            box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
-        }
+            .typeahead, .tt-query, .tt-hint {
+                border: 2px solid #CCCCCC;
+                border-radius: 8px;
+                font-size: 24px;
+                height: 30px;
+                line-height: 30px;
+                outline: medium none;
+                padding: 8px 12px;
+                width: 396px;
+            }
 
-        .tt-hint {
-            color: #999999;
-        }
+            .typeahead {
+                background-color: #FFFFFF;
+            }
 
-        .tt-dropdown-menu {
-            background-color: #FFFFFF;
-            border: 1px solid rgba(0, 0, 0, 0.2);
-            border-radius: 8px;
-            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-            margin-top: 12px;
-            padding: 8px 0;
-            width: 422px;
-        }
+                .typeahead:focus {
+                    border: 2px solid #0097CF;
+                }
 
-        .tt-suggestion {
-            font-size: 24px;
-            line-height: 24px;
-            padding: 3px 20px;
-        }
+            .tt-query {
+                box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+            }
 
-        .tt-suggestion.tt-is-under-cursor {
-            background-color: #0097CF;
-            color: #FFFFFF;
-        }
+            .tt-hint {
+                color: #999999;
+            }
 
-        .tt-suggestion p {
-            margin: 0;
-        }
-    </style>*@
+            .tt-dropdown-menu {
+                background-color: #FFFFFF;
+                border: 1px solid rgba(0, 0, 0, 0.2);
+                border-radius: 8px;
+                box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+                margin-top: 12px;
+                padding: 8px 0;
+                width: 422px;
+            }
+
+            .tt-suggestion {
+                font-size: 24px;
+                line-height: 24px;
+                padding: 3px 20px;
+            }
+
+            .tt-suggestion.tt-is-under-cursor {
+                background-color: #0097CF;
+                color: #FFFFFF;
+            }
+
+            .tt-suggestion p {
+                margin: 0;
+            }
+        </style>*@
 </head>
 <body style='background: #000' id="page-top" data-spy="scroll">
     <div class="header" style="font-family:'Mr De Haviland', cursive; font-size:280%; line-height: 90%;">U ime Allaha dz.š milostivog i samilosnog...</div>
@@ -179,10 +179,12 @@
 
 
         //Google Analytics
-        (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-        })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+        (function (i, s, o, g, r, a, m) {
+            i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+                (i[r].q = i[r].q || []).push(arguments)
+            }, i[r].l = 1 * new Date(); a = s.createElement(o),
+            m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
 
         ga('create', 'UA-80039015-2', 'auto');
         ga('send', 'pageview');
